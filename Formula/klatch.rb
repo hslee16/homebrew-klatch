@@ -42,6 +42,9 @@ class Klatch < Formula
     ENV["KLATCH_NAME"] = "brew-test"
     system bin/"klatch", "join", "lobby"
     system bin/"klatch", "post", "lobby", "hello from brew test"
+    # a member never sees its own posts, so read as a second member
+    ENV["KLATCH_NAME"] = "brew-reader"
+    system bin/"klatch", "join", "lobby"
     assert_match "hello from brew test", shell_output("#{bin}/klatch read lobby --peek")
   end
 end
