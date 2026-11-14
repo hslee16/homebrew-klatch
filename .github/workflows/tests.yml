@@ -19,6 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
+      # Homebrew is preinstalled on the Linux runner but is not on PATH.
+      - name: Put Homebrew on PATH (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          test -x /home/linuxbrew/.linuxbrew/bin/brew
+          echo "/home/linuxbrew/.linuxbrew/bin" >> "$GITHUB_PATH"
+
       # Homebrew only installs formulae that live in a tap, so tap this checkout by path.
       - name: Tap this repository
         run: brew tap hslee16/klatch "$GITHUB_WORKSPACE"
