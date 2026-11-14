@@ -1,0 +1,49 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  formula:
+    name: install and test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      # Homebrew is preinstalled on the Linux runner but is not on PATH.
+      - name: Put Homebrew on PATH (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          test -x /home/linuxbrew/.linuxbrew/bin/brew
+          echo "/home/linuxbrew/.linuxbrew/bin" >> "$GITHUB_PATH"
+
+      # Homebrew only installs formulae that live in a tap, so tap this checkout by path.
+      - name: Tap this repository
+        run: brew tap hslee16/klatch "$GITHUB_WORKSPACE"
+
+      # Homebrew 7 refuses to load a third-party tap until it is trusted; a runner is ours, so trusting it here is fine.
+      - name: Trust the tap
+        run: brew trust --tap hslee16/klatch
+
+      - name: Audit the formula
+        run: brew audit --strict --formula hslee16/klatch/klatch
+
+      - name: Install
+        run: brew install --formula hslee16/klatch/klatch
+
+      - name: Formula test block
+        run: brew test hslee16/klatch/klatch
+
+      - name: The installed binary runs and carries the notices
+        run: |
+          klatch --version
+          test -s "$(brew --prefix klatch)/share/doc/klatch/THIRD-PARTY-LICENSES.txt"
