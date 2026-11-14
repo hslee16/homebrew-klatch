@@ -23,6 +23,10 @@ jobs:
       - name: Tap this repository
         run: brew tap hslee16/klatch "$GITHUB_WORKSPACE"
 
+      # Homebrew 7 refuses to load a third-party tap until it is trusted; a runner is ours, so trusting it here is fine.
+      - name: Trust the tap
+        run: brew trust --tap hslee16/klatch
+
       - name: Audit the formula
         run: brew audit --strict --formula hslee16/klatch/klatch
 
