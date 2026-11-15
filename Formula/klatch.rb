@@ -1,7 +1,7 @@
 class Klatch < Formula
   desc "Substrate for agent rooms: claims, asks, a board and a durable encrypted log"
   homepage "https://github.com/hslee16/klatch"
-  version "0.1.0-dev.1"
+  version "0.1.0-dev.2"
   license "MIT"
 
   # An early pre-release: no outside security review, not for sensitive data.
@@ -9,23 +9,23 @@ class Klatch < Formula
   # hslee16/klatch (verify with `gh attestation verify`; see SECURITY.md in that repository).
   on_macos do
     on_arm do
-      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev1/klatch-0.1.0-dev.1-aarch64-apple-darwin.tar.gz"
-      sha256 "23fba029f7f0d7bf3863d0589f3feaf3a72f47f6e3767635c8f7a65db523985a"
+      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev2/klatch-0.1.0-dev.2-aarch64-apple-darwin.tar.gz"
+      sha256 "b0fc61917d5fe074c10950b922824368a758a1d3ad2a791d554ba1c1d764d8a9"
     end
     on_intel do
-      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev1/klatch-0.1.0-dev.1-x86_64-apple-darwin.tar.gz"
-      sha256 "436d2acdb40564a719b319280a012d763c16fe48f8f4c8bf2b943b6340b3c2de"
+      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev2/klatch-0.1.0-dev.2-x86_64-apple-darwin.tar.gz"
+      sha256 "26482262ea32854057d8d2e217accdb1981ee1624705a2c37a624c342fc605c0"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev1/klatch-0.1.0-dev.1-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "2cf06d9cb4a913b47af0b099098e5b10fbb6fee4325e545be5d588a1a26f22d8"
+      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev2/klatch-0.1.0-dev.2-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "4f37c00b6b484244f62ccd431cea3ce047081b7b5ad6172b9a195200a5dd9bd8"
     end
     on_intel do
-      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev1/klatch-0.1.0-dev.1-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "43330d673b876b78f47a5b2862fb1c47e83407e700672909dc870eb67f1d9bb2"
+      url "https://github.com/hslee16/klatch/releases/download/v0.1.0.dev2/klatch-0.1.0-dev.2-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "551946c2f28a85f452e0cbf2c84a0ca5952f531f302527b73d44c5574f88c087"
     end
   end
 
